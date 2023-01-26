@@ -5,11 +5,12 @@ from sqlalchemy.orm import Session
 from fastapi import Depends, status, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from datetime import datetime, timedelta, timezone
+from .database import settings
 
-ACCESS_TOKEN_EXP = 1
-RESET_TOKEN_EXP = 30
-ALGORITHM = "HS256"
-SECRET_KEY = "your_secret_key"
+ACCESS_TOKEN_EXP = settings.access_token_exp
+RESET_TOKEN_EXP = settings.reset_token_exp
+ALGORITHM = settings.algorithm
+SECRET_KEY = settings.secret_key
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 

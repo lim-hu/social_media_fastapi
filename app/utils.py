@@ -1,6 +1,7 @@
 from passlib.context import CryptContext
 from email.message import EmailMessage
 import ssl, smtplib
+from .config import settings
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated='auto')
 
@@ -13,8 +14,8 @@ def verify_pwd(plain_pwd, hashed_pwd):
 
 def send_token(email, token):
 
-    email_sender = 'your_email@example.com'
-    email_password = 'your_email_password'
+    email_sender = settings.from_email
+    email_password = settings.email_pass
     email_reciver = email
 
     subject = "Token for Reset Password"
